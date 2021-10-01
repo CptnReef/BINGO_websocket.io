@@ -2,8 +2,12 @@
     text-align: center;
 }
 
+#bingoNumber {
+    text-align: center;
+}
+
 .bingoHeader {
-    background: #9b59b6;
+    background: #e46060;
 }
 
 /* Style spacing of items inside of bingo board */
@@ -27,5 +31,5 @@ th, td {
 
 /* Style FREE box in the center of the board */
 #boxFree {
-    background: #05f319;
+    background: #38c1eb;
 }

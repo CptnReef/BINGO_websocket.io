@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <title>Bingo</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src='./client.js'></script>
 </head>
 
 <body>
-    <div>
+    <div id="game">
         <div id="header">
             <h1>Multiplayer Bingo</h1>
         </div>
@@ -60,7 +62,9 @@
             </table>
         </div>
 
-        <script src='./client.js'></script>
+        <div>
+            <h3 id="bingoNumber"></h3>
+        </div>
 </body>
 
 </html>
