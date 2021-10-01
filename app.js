@@ -21,12 +21,17 @@ io.on('connection', socket => {
     socket.on('new player', name => {
         currentUsers[socket.id] = name;
         io.emit('new player', name);
-        console.log(currentUsers);
     });
 
     // Get all online users
     socket.on('get users', users => {
         socket.emit('get users', currentUsers);
+    });
+
+    // Remove user from currentUsers list when they disconnect
+    socket.on('disconnect', () => {
+        delete currentUsers[socket.id];
+        io.emit('player disconnected', currentUsers);
     });
 });
 

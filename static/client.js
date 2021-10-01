@@ -90,13 +90,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Display all other users currently online
     socket.on('get users', users => {
-        for (user in users) {
-            $('#user-list ul').append(`<li class="online-user">${user}</li>`)
+        console.log(users)
+        for (const [key, value] of Object.entries(users)) {
+            $('#user-list ul').append(`<li class="online-user">${value}</li>`)
         };
     });
 
     // Display new users in the online user list
     socket.on('new player', username => {
         $('#user-list ul').append(`<li class="online-user">${username}</li>`)
+    });
+
+    // Update user list when user disconnects
+    socket.on('player disconnected', users => {
+        $('#user-list ul').empty();
+        for (const [key, value] of Object.entries(users)) {
+            $('#user-list ul').append(`<li class="online-user">${value}</li>`)
+        };
     });
 });
