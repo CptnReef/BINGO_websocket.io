@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <form class="user-creation-form">
+        <input id="player-name-input" placeholder="name"></input>
+        <button id="create-player">Enter Game</button>
+    </form>
+
     <div id="game">
         <div id="header">
             <h1>Multiplayer Bingo</h1>
@@ -41,7 +46,7 @@
                 <tr>
                     <td id="box10"> &nbsp;</td>
                     <td id="box11"> &nbsp;</td>
-                    <td id="boxFree"> FREE</td>
+                    <td id="boxFree">FREE</td>
                     <td id="box12"> &nbsp;</td>
                     <td id="box13"> &nbsp;</td>
                 </tr>
@@ -62,7 +67,8 @@
             </table>
         </div>
 
-        <div>
+        <div style="display: flex; justify-content: center;">
+            <button id="start-game">Begin the game!</button>
             <h3 id="bingoNumber"></h3>
         </div>
 </body>

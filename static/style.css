@@ -33,3 +33,7 @@ th, td {
 #boxFree {
     background: #38c1eb;
 }
+
+#game {
+    display: none;
+}

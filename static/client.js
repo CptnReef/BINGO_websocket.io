@@ -1,17 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const socket = io.connect();
 
+    let playerName;
     let unavailableNumbers = [];
     let bingoNumberCounter = 0;
-
-    $('td').on('click', e => {
-        let clickedBoxValue = e.target.innerHTML;
-        let currentBingoNumber = document.getElementById('bingoNumber').innerHTML;
-
-        if (clickedBoxValue == currentBingoNumber) {
-            document.getElementById(e.target.id).style.background = 'pink';
-        };
-    });
 
     const randomNumber = () => {
         // Generate random number from 0 to 149
@@ -38,26 +30,60 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const bingoNumber = () => {
-        setTimeout( () => {
-            bingoNumberCounter ++;
-            let currentNumber = randomNumber();
+        bingoNumberCounter ++;
+        let currentNumber = randomNumber();
 
-            while (unavailableNumbers.includes(currentNumber) == true) {
-                currentNumber = randomNumber();
-            };
+        while (unavailableNumbers.includes(currentNumber) == true) {
+            currentNumber = randomNumber();
+        };
 
-            unavailableNumbers.push(currentNumber);
-            document.getElementById('bingoNumber').innerHTML = currentNumber
+        unavailableNumbers.push(currentNumber);
+        document.getElementById('bingoNumber').innerHTML = currentNumber;
 
-            if (bingoNumberCounter < 26) {
+        if (bingoNumberCounter < 26) {
+            setTimeout( () => {
                 bingoNumber();
-            } else {
-                unavailableNumbers = [];
-                return
-            };
-        }, 5000);
+            }, 5000)
+        } else {
+            unavailableNumbers = [];
+            return
+        };
     };
 
-    generateBoard();
-    bingoNumber();
+    $('#create-player').on('click', e => {
+        e.preventDefault();
+        playerName = document.getElementById('player-name-input').value;
+        if (playerName.length > 0) {
+            socket.emit('new player', playerName)
+        };
+
+        // Remove the form after user has been created
+        const form = document.getElementsByClassName('user-creation-form');
+        while (form.length > 0) {
+            form[0].remove();
+        };
+        
+        // Generate the bingo board
+        generateBoard();
+
+        // Show game board after username has been entered
+        document.getElementById('game').style.display = 'block';
+    });
+
+    // Fill the bingo box. Only allows filling if clicked number matches called number
+    $('td').on('click', e => {
+        let clickedBoxValue = e.target.innerHTML;
+        let currentBingoNumber = document.getElementById('bingoNumber').innerHTML;
+
+        if (clickedBoxValue == currentBingoNumber) {
+            document.getElementById(e.target.id).style.background = 'pink';
+        };
+    });
+
+    // Begin the bingo number caller
+    document.getElementById('start-game').onclick = () => {
+        document.getElementById('start-game').remove();
+        bingoNumber();
+    };
+
 });
