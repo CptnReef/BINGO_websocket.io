@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ['x1-y5', 'x2-y4','x3-y3','x4-y2','x5-y1']
     ];
 
+    // Get all currently online users on page load
     socket.emit('get users');
 
     const randomNumber = () => {
@@ -84,7 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // Begin the bingo number caller
+    // Begin the bingo number caller. Using event delegation because these buttons
+    // get dynamically added and removed
     $(document).on('click', '#start-game', () => {
         socket.emit('begin game');
     });
@@ -114,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
+    // Gets randomly generated bingo number and displays it on the game page
     socket.on('begin game', number => {
         startGameButton = document.getElementById('start-game');
 
@@ -126,6 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('bingoNumber').style.fontSize = '40px';
     });
 
+    // When a player wins, display name of winning player. Then, clear out
+    // leftover data from previous game and prepare elements for a new game
     socket.on('player won', winningPlayer => {
         document.getElementById('winner').innerHTML = `${winningPlayer} won!` // Display winning player
         document.getElementById('bingoNumber').innerHTML = '';
