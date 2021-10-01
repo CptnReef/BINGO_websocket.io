@@ -31,27 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    // const bingoNumber = () => {
-    //     bingoNumberCounter ++;
-    //     let currentNumber = randomNumber();
-
-    //     while (unavailableNumbers.includes(currentNumber) == true) {
-    //         currentNumber = randomNumber();
-    //     };
-
-    //     unavailableNumbers.push(currentNumber);
-    //     document.getElementById('bingoNumber').innerHTML = currentNumber;
-
-    //     if (bingoNumberCounter < 26) {
-    //         setTimeout( () => {
-    //             bingoNumber();
-    //         }, 5000)
-    //     } else {
-    //         unavailableNumbers = [];
-    //         return
-    //     };
-    // };
-
     $('#create-player').on('click', e => {
         e.preventDefault();
         playerName = document.getElementById('player-name-input').value;
