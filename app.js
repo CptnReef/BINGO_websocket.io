@@ -47,8 +47,9 @@ app.get('/', (req, res) => {
 io.on('connection', socket => {
     // Listen for new player creation
     socket.on('new player', name => {
-        currentUsers[socket.id] = name;
-        io.emit('new player', name);
+        currentUsers[socket.id] = {name: name};
+        // currentUsers[socket.id]["test"] = 'hi there'
+        io.emit('new player', { name: name, id: socket.id });
     });
 
     // Get all online users
@@ -66,6 +67,18 @@ io.on('connection', socket => {
     socket.on('begin game', () => {
         bingoNumber();
     });
+
+    // Player won. End game and display winner to all users
+    socket.on('player won', winningPlayer => {
+        bingoNumberCounter = 1000; // End the bingo counter loop
+        unavailableNumbers = []; // Reset unavailable number counter
+        io.emit('player won', winningPlayer)
+    });
+
+    // Generate new board
+    socket.on('generate new board', () => {
+        io.emit('generate new board')
+    })
 });
 
 // Start server
