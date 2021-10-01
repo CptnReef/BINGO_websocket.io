@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let unavailableNumbers = [];
     let bingoNumberCounter = 0;
 
+    socket.emit('get users');
+
     const randomNumber = () => {
         // Generate random number from 0 to 149
         return Math.floor(Math.random() * 26)
@@ -86,4 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
         bingoNumber();
     };
 
+    // Display all other users currently online
+    socket.on('get users', users => {
+        for (user in users) {
+            $('#user-list ul').append(`<li class="online-user">${user}</li>`)
+        };
+    });
+
+    // Display new users in the online user list
+    socket.on('new player', username => {
+        $('#user-list ul').append(`<li class="online-user">${username}</li>`)
+    });
 });

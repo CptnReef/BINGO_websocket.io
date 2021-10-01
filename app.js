@@ -23,6 +23,11 @@ io.on('connection', socket => {
         io.emit('new player', name);
         console.log(currentUsers);
     });
+
+    // Get all online users
+    socket.on('get users', users => {
+        socket.emit('get users', currentUsers);
+    });
 });
 
 // Start server
