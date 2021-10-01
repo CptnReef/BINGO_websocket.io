@@ -31,26 +31,26 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    const bingoNumber = () => {
-        bingoNumberCounter ++;
-        let currentNumber = randomNumber();
+    // const bingoNumber = () => {
+    //     bingoNumberCounter ++;
+    //     let currentNumber = randomNumber();
 
-        while (unavailableNumbers.includes(currentNumber) == true) {
-            currentNumber = randomNumber();
-        };
+    //     while (unavailableNumbers.includes(currentNumber) == true) {
+    //         currentNumber = randomNumber();
+    //     };
 
-        unavailableNumbers.push(currentNumber);
-        document.getElementById('bingoNumber').innerHTML = currentNumber;
+    //     unavailableNumbers.push(currentNumber);
+    //     document.getElementById('bingoNumber').innerHTML = currentNumber;
 
-        if (bingoNumberCounter < 26) {
-            setTimeout( () => {
-                bingoNumber();
-            }, 5000)
-        } else {
-            unavailableNumbers = [];
-            return
-        };
-    };
+    //     if (bingoNumberCounter < 26) {
+    //         setTimeout( () => {
+    //             bingoNumber();
+    //         }, 5000)
+    //     } else {
+    //         unavailableNumbers = [];
+    //         return
+    //     };
+    // };
 
     $('#create-player').on('click', e => {
         e.preventDefault();
@@ -84,13 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Begin the bingo number caller
     document.getElementById('start-game').onclick = () => {
-        document.getElementById('start-game').remove();
-        bingoNumber();
+        socket.emit('begin game');
     };
 
     // Display all other users currently online
     socket.on('get users', users => {
-        console.log(users)
         for (const [key, value] of Object.entries(users)) {
             $('#user-list ul').append(`<li class="online-user">${value}</li>`)
         };
@@ -108,4 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#user-list ul').append(`<li class="online-user">${value}</li>`)
         };
     });
+
+    socket.on('begin game', number => {
+        startGameButton = document.getElementById('start-game');
+
+        // Remove start game button only if it exists (since this runs in
+        // a loop, the button will be gone on subsequent loops)
+        if (startGameButton) {
+            startGameButton.remove();
+        };
+        document.getElementById('bingoNumber').innerHTML = number;
+    });
+
 });

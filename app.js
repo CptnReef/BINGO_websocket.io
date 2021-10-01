@@ -8,6 +8,34 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 
 let currentUsers = {};
+let unavailableNumbers = [];
+let bingoNumberCounter = 0;
+
+const randomNumber = () => {
+    // Generate random number from 0 to 149
+    return Math.floor(Math.random() * 26)
+};
+
+const bingoNumber = () => {
+    bingoNumberCounter ++;
+    let currentNumber = randomNumber();
+
+    while (unavailableNumbers.includes(currentNumber) == true) {
+        currentNumber = randomNumber();
+    };
+
+    unavailableNumbers.push(currentNumber);
+    io.emit('begin game', currentNumber);
+
+    if (bingoNumberCounter < 26) {
+        setTimeout( () => {
+            bingoNumber();
+        }, 5000)
+    } else {
+        unavailableNumbers = [];
+        return
+    };
+};
 
 // Set up express static folder
 app.use(express.static('static'));
@@ -32,6 +60,11 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         delete currentUsers[socket.id];
         io.emit('player disconnected', currentUsers);
+    });
+
+    // Begin bingo number counter
+    socket.on('begin game', () => {
+        bingoNumber();
     });
 });
 
