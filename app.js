@@ -25,7 +25,7 @@ const bingoNumber = () => {
     };
 
     unavailableNumbers.push(currentNumber);
-    io.emit('begin game', currentNumber);
+    io.emit('bingo number', currentNumber);
 
     if (bingoNumberCounter < 26) {
         setTimeout( () => {

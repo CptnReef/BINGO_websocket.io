@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Show game board after username has been entered
         document.getElementById('game').style.display = 'block';
+        document.getElementById('your-name').innerHTML = `Your name: ${playerName}`;
     });
 
     // Fill the bingo box. Only allows filling if clicked number matches called number
@@ -117,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Gets randomly generated bingo number and displays it on the game page
-    socket.on('begin game', number => {
+    socket.on('bingo number', number => {
         startGameButton = document.getElementById('start-game');
 
         // Remove start game button only if it exists (since this runs in
