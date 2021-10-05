@@ -42,3 +42,19 @@ th, td {
     display: flex;
     justify-content: center;
 }
+
+/* toggles the Player connection */
+.connected {
+    font-weight: normal;
+}
+
+.connected span {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background: red;
+}
+
+span.green {
+    background: green;
+}

@@ -15,9 +15,9 @@
     x- Winner Sequence
     ?- Draw Sequence
     - (optional) send winner's reciept to email
-    - Multiplayer Socket.io
-    - (Stretch) Save player's name to Game Room?
-    - (Stretch) Game Room limits amount of players
+    x- Multiplayer Socket.io
+    x- (Stretch) Save player's name to Game Room?
+    x- (Stretch) Game Room limits amount of players
     - (Stretch) Player Host (Host Holds all the privileges)
     - (Stretch) Control Sound & Effects
     - (Stretch) Generate Random Board Color
