@@ -6,15 +6,15 @@
 
 ## ToDos:
 
-    - Enter Name to  generate player and board (Start Game)
-    - Create a Canvas/ 5x5 Board
-    - Test Canvas/Board
-    - Create Random Numbers for the board
-    - Create Random Numbers outside of board, on a timer
-    - Validate Player's matching input/number
-    - Winner Sequence
-    - Game Over Sequence
-    - Draw Sequence
+    x- Enter Name to  generate player and board (Start Game)
+    x- Create a Canvas/ 5x5 Board
+    x- Test Canvas/Board
+    x - Create Random Numbers for the board
+    x - Create Random Numbers outside of board, on a timer
+    x- Validate Player's matching input/number
+    x- Winner Sequence
+    ?- Draw Sequence
+    - (optional) send winner's reciept to email
     - Multiplayer Socket.io
     - (Stretch) Save player's name to Game Room?
     - (Stretch) Game Room limits amount of players
@@ -27,6 +27,6 @@
 
 ## Sree (Front End/Back End)
 
-## Ben (Back End)
+## Ben (MVP/Back End)
 
 ## Sharif (Back End)
