@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // *** Game Player's Status
     let currentPlayer = 'user'
-    let playerNum = 0;
 
     // Get all currently online users on page load
     socket.emit('get users');
@@ -55,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         playerName = document.getElementById('player-name-input').value;
         if (playerName.length > 0) {
+            // *** Add connection
+            multiplayer()
             socket.emit('new player', playerName)
         };
 
@@ -101,36 +102,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // *** Player Identifier
-    function multiplayer() {
+    function multiplayer(num=0) {
+        let playerNum = 0;
 
-        // *** Get player Number
-        socket.on('player-number', num => {
-            if (num === -1) {
-                infoDisplay.innerHTML = "Sorry, Server is Full"
-            } else {
-                playerNum = parseInt(num)
-                if(playerNum === 1) currentPlayer = "opponent"
-
-            console.log(`${playerNum}`)
+        // *** Get player Number        
+        if (num === -1) {
+            infoDisplay.innerHTML = "Sorry, Server is Full"
+        } else {
+            playerNum = parseInt(num)
+            if(playerNum === 1) {
+                currentPlayer = "opponent"
+                console.log(`${playerNum}`)
             }
-        })
-    // *** Another player has connected or disconnected
-        socket.on('player-connection', num => {
-            console.log(`Player number ${num} has connected or disconnected`)
-            // *** Pass the number that is the player.
-            playerConnectionOrDisconnected(num)
-        })
-    
+        }
+        
         // *** Operate's the "div class 'player #' " in response to 'connection'
         // *** Added a toggle feature for span in css 
-        function playerConnectionOrDisconnected(num) {
-            let player = `.p${parseInt(num) + 1}`
+        
+        let player = `.p${parseInt(num) + 1}`
+        // *** if the player is us we want to signal our connection
+        if(parseInt(num) === playerNum) {
+            document.querySelector(player).style.fontWeight = 'bold'
             document.querySelector(`${player} .connected span`).classList.toggle('green')
-            // *** if the player is us we want to signal our connection
-            if(parseInt(num) === playerNum) document.querySelector(player).style.fontWeight = 'bold'
-            if(parseInt(num - 1) === playerNum) document.querySelector(player).style.fontWeight = 'bold'
-
         }
+        if(parseInt(num - 1) === playerNum) {
+            document.querySelector(player).style.fontWeight = 'bold'
+            document.querySelector(`${player} .connected span`).classList.toggle('green')
+        }
+
+        
     }
 
     // Display all other users currently online
@@ -188,6 +188,5 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('generate-new-board').remove(); // Remove generate new board button
         $('#game-controls').append('<button id="start-game">Begin the game!</button>')
     });
-    multiplayer()
 
 });
