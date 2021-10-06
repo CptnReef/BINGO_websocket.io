@@ -59,12 +59,3 @@ td {
 span.green {
   background: green;
 }
-
-/* countdown */
-#countdown {
-  font-size: small;
-  height: 7px;
-  width: 7px;
-  margin: auto;
-  padding: auto;
-}
