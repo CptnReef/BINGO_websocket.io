@@ -1,60 +1,70 @@
 #header {
-    text-align: center;
+  text-align: center;
 }
 
 #bingoNumber {
-    text-align: center;
+  text-align: center;
 }
 
 .bingoHeader {
-    background: #e46060;
+  background: #e46060;
 }
 
 /* Style spacing of items inside of bingo board */
 #bingoTable {
-    margin: 0 auto;
-    text-align: center;
-    width: 600px;
-    height: 600px;
-    border-collapse: collapse;
-    background: white;
+  margin: 0 auto;
+  text-align: center;
+  width: 600px;
+  height: 600px;
+  border-collapse: collapse;
+  background: white;
 }
 
 /* Add borders between each box in bingo box */
-th, td {
-    font-family: Helvetica;
-    margin: 0 auto;
-    text-align: center;
-    border: 3px solid black;
-    width: 20%;
+th,
+td {
+  font-family: Helvetica;
+  margin: 0 auto;
+  text-align: center;
+  border: 3px solid black;
+  width: 20%;
 }
 
 /* Style FREE box in the center of the board */
 #boxFree {
-    background: #38c1eb;
+  background: #38c1eb;
 }
 
 #game {
-    display: none;
+  display: none;
 }
 
 #user-list {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 /* toggles the Player connection */
 .connected {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .connected span {
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-    background: red;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: red;
 }
 
 span.green {
-    background: green;
+  background: green;
+}
+
+/* countdown */
+#countdown {
+  font-size: small;
+  height: 7px;
+  width: 7px;
+  margin: auto;
+  padding: auto;
 }

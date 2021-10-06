@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/static/index.html')
 });
 
-io.on('connection', socket => {
+io.on('connection', socket => {        
         // *** Find an available player number
         // *** identify player 1 & 2 as 0 & 1, if -1 ignore player.
         let playerIndex = -1
@@ -60,10 +60,10 @@ io.on('connection', socket => {
 
         // *** Ignore player 3
         if (playerIndex === -1) return
+        
 
         // *** checks if player is ready or not?
         connections[playerIndex] = false
-
 
     // Listen for new player creation
     socket.on('new player', name => {

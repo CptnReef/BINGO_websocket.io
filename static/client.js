@@ -21,6 +21,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // *** Game Player's Status
     let currentPlayer = 'user'
+    let arr = []
+
+    // *** timer variables & function
+    let seconds = 4;
+    let countdown = document.getElementById('countdown')
+
+    function countdownUpdate() {
+        seconds--;
+        countdown.innerHTML = `${seconds}`;
+
+        if(seconds <= 0) {
+            seconds = 5
+        }
+    }
 
     // Get all currently online users on page load
     socket.emit('get users');
@@ -95,6 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // get dynamically added and removed
     $(document).on('click', '#start-game', () => {
         socket.emit('begin game');
+        // *** call timer
+        setInterval(countdownUpdate, 1000)
     });
 
     $(document).on('click', '#generate-new-board', () => {
@@ -129,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector(player).style.fontWeight = 'bold'
             document.querySelector(`${player} .connected span`).classList.toggle('green')
         }
-
         
     }
 
