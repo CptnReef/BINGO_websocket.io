@@ -1,3 +1,25 @@
+/* ---- IMPORTS ---- */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Slab:wght@300&display=swap');
+/* 
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto Slab', serif;
+*/
+
+.banner{
+  background-image: linear-gradient(to right, #54a7ff, #5331ff);
+  color: white;
+  padding-top: 5%;
+}
+
+.banner h1{
+  color: white;
+  font-size: 3rem;
+}
+
+.banner h4{
+  color: white;
+}
+
 #header {
   text-align: center;
 }
@@ -37,6 +59,10 @@ td {
 
 #game {
   display: none;
+}
+
+#content {
+  color: black!important;
 }
 
 #user-list {
