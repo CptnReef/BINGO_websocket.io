@@ -111,11 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // get dynamically added and removed
     $(document).on('click', '#start-game', () => {
         socket.emit('begin game');
-        // *** call timer
-        setInterval(countdownUpdate, 1000)
-        
-        //TESTING
-        socket.emit('player won', { player: playerName, id: socket.id })
     });
 
     $(document).on('click', '#generate-new-board', () => {
@@ -185,6 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         document.getElementById('bingoNumber').innerHTML = number;
         document.getElementById('bingoNumber').style.fontSize = '40px';
+    });
+
+    socket.on('begin timer', () => {
+        // *** call timer
+        setInterval(countdownUpdate, 1000)
     });
 
     // When a player wins, display name of winning player. Then, clear out

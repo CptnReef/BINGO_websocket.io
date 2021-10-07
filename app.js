@@ -136,6 +136,7 @@ io.on('connection', socket => {
     // Begin bingo number counter
     socket.on('begin game', () => {
         bingoNumber();
+        io.emit('begin timer');
     });
 
     // Player won. End game and display winner to all users. Send email to winning player.
