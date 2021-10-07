@@ -1,10 +1,22 @@
-# Bingo:
+## Team Role:
 
-## What To Install:
+### - Sree (Front End/Back End)
+
+### - Ben (MVP/Back End)
+
+### - Sharif (Back End)
+
+### What Is Bingo!
+
+### Demonstration
+
+### Justification for using WebSockets
+
+### What To Install:
 
     - install npm install
 
-## ToDos:
+### ToDos:
 
     x- Enter Name to  generate player and board (Start Game)
     x- Create a Canvas/ 5x5 Board
@@ -19,14 +31,6 @@
     x- (Stretch) Save player's name to Game Room?
     x- (Stretch) Game Room limits amount of players
     - (Stretch) Player Host (Host Holds all the privileges)
-    - (Stretch) Control Sound & Effects
+    x- (Stretch) Control Sound & Effects
     - (Stretch) Generate Random Board Color
     - (Stretch) Create Board Size (ie; 4x4, 5x5, 6x6, etc.)
-
-# Team Role:
-
-## Sree (Front End/Back End)
-
-## Ben (MVP/Back End)
-
-## Sharif (Back End)
