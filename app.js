@@ -135,11 +135,6 @@ io.on('connection', socket => {
 
     // Begin bingo number counter
     socket.on('begin game', () => {
-        // Ensure counter is reset before starting game. Sometimes, it doesn't get
-        // reset properly if a game is exited before there is a winner.
-        bingoNumberCounter = 0;
-        unavailableNumbers = [];
-
         bingoNumber();
         io.emit('begin timer');
     });

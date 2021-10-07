@@ -37,6 +37,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function next() {
+            var file = './sound/next.mp3'
+            let mp3 = new Audio(file);
+            mp3.preload = 'auto';
+            mp3.onloadeddata = function () {
+                console.log("audio: " + file + " has successfully loaded.");
+            };
+            mp3.play();
+        }
+
+    function match() {
+        var file = './sound/match.mp3'
+            let mp3 = new Audio(file);
+            mp3.preload = 'auto';
+            mp3.onloadeddata = function () {
+                console.log("audio: " + file + " has successfully loaded.");
+            };
+            mp3.play();
+    }
+
+    function win() {
+            var file = './sound/win.mp3'
+            let mp3 = new Audio(file);
+            mp3.preload = 'auto';
+            mp3.onloadeddata = function () {
+                console.log("audio: " + file + " has successfully loaded.");
+            };
+            mp3.play();
+    }
+
     // Get all currently online users on page load
     socket.emit('get users');
 
@@ -93,10 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
     $('td').on('click', e => {
         let clickedBoxValue = e.target.innerHTML;
         let currentBingoNumber = document.getElementById('bingoNumber').innerHTML;
-
+        
         if (clickedBoxValue == currentBingoNumber) {
             document.getElementById(e.target.id).style.background = 'pink';
             clickedSquares.push(e.target.classList[0])
+            // *** call 'match' audio
+            match()
 
             for (item in winningCoordinates) {
 
@@ -111,6 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // get dynamically added and removed
     $(document).on('click', '#start-game', () => {
         socket.emit('begin game');
+        // *** call timer
+        setInterval(countdownUpdate, 1000)
+        
+        //TESTING
+        socket.emit('player won', { player: playerName, id: socket.id })
     });
 
     $(document).on('click', '#generate-new-board', () => {
@@ -180,11 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         document.getElementById('bingoNumber').innerHTML = number;
         document.getElementById('bingoNumber').style.fontSize = '40px';
-    });
 
-    socket.on('begin timer', () => {
-        // *** call timer
-        setInterval(countdownUpdate, 1000)
+        // *** call 'next' audio
+        next()
     });
 
     // When a player wins, display name of winning player. Then, clear out
@@ -194,7 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('bingoNumber').innerHTML = '';
         clickedSquares = []; // Clear clicked squares from previous game
         $('#game-controls').append('<button id="generate-new-board">Generate new game board!</button>')
-        // TODO: send winner email?
+
+        // *** call 'win' audio
+        win()
     });
 
     socket.on('generate new board', () => {
