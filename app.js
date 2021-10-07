@@ -1,3 +1,4 @@
+require('dotenv').config();
 const port = 3000;
 const path = require('path');
 const express = require('express');
@@ -6,6 +7,17 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
+
+// mailgun setup
+const nodemailer = require('nodemailer');
+const mailgun = require('nodemailer-mailgun-transport');
+
+const auth = {
+    auth: {
+        api_key: process.env.MAILGUN_API_KEY,
+        domain: process.env.EMAIL_DOMAIN
+    }
+};
 
 // *** limit the number of players to a game
 const connections = [null, null]; // two connections to keep track of?
@@ -40,6 +52,23 @@ const bingoNumber = () => {
     };
 };
 
+const sendEmail = (email, name) => {
+    const mailer = nodemailer.createTransport(mailgun(auth));
+
+    mailer.sendMail({
+        from: 'no-reply@benchan.tech',
+        to: email,
+        subject: 'Congratulations, you won!',
+        text: `Congratulations ${name}, on winning Bingo!!`
+    })
+    .then( status => {
+        console.log(status)
+    })
+    .catch( error => {
+        console.log(`Failed to send email. Error message: ${errorMonitor}`)
+    })
+};
+
 // Set up express static folder
 app.use(express.static('static'));
 
@@ -66,8 +95,11 @@ io.on('connection', socket => {
         connections[playerIndex] = false
 
     // Listen for new player creation
-    socket.on('new player', name => {
-        currentUsers[socket.id] = {name: name};
+    socket.on('new player', playerInfo => {
+        currentUsers[socket.id] = {
+            name: playerInfo.playerName,
+            email: playerInfo.playerEmail
+        };
 
         // *** Tell the Connecting client what player number they are
         socket.emit('player-number', playerIndex)
@@ -78,7 +110,7 @@ io.on('connection', socket => {
         socket.broadcast.emit('player-connection', playerIndex)
 
         // currentUsers[socket.id]["test"] = 'hi there'
-        io.emit('new player', { name: name, id: socket.id });
+        io.emit('new player', { name: playerInfo.playerName, id: socket.id });
 
 
     });
@@ -106,11 +138,15 @@ io.on('connection', socket => {
         bingoNumber();
     });
 
-    // Player won. End game and display winner to all users
+    // Player won. End game and display winner to all users. Send email to winning player.
     socket.on('player won', winningPlayer => {
         bingoNumberCounter = 1000; // End the bingo counter loop
         unavailableNumbers = []; // Reset unavailable number counter
-        io.emit('player won', winningPlayer)
+
+        const playerId = winningPlayer.id
+        sendEmail(currentUsers[playerId].email, currentUsers[playerId].name)
+
+        io.emit('player won', winningPlayer.player)
     });
 
     // Generate new board

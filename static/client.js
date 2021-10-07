@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const socket = io.connect();
 
     let playerName;
+    let playerEmail;
     let playerId;
     let clickedSquares = ['x3-y3'];
     let winningCoordinates = [
@@ -67,10 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#create-player').on('click', e => {
         e.preventDefault();
         playerName = document.getElementById('player-name-input').value;
+        playerEmail = document.getElementById('player-email').value;
         if (playerName.length > 0) {
             // *** Add connection
             multiplayer()
-            socket.emit('new player', playerName)
+            socket.emit('new player', { playerName: playerName, playerEmail: playerEmail })
         };
 
         // Remove the form after user has been created
@@ -99,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for (item in winningCoordinates) {
 
                 if (winningCoordinates[item].every(res => clickedSquares.includes(res))) {
-                    socket.emit('player won', playerName)
+                    socket.emit('player won', { player: playerName, id: socket.id })
                 };
             };
         };
@@ -111,6 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('begin game');
         // *** call timer
         setInterval(countdownUpdate, 1000)
+        
+        //TESTING
+        socket.emit('player won', { player: playerName, id: socket.id })
     });
 
     $(document).on('click', '#generate-new-board', () => {
