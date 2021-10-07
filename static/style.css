@@ -20,8 +20,27 @@ font-family: 'Roboto Slab', serif;
   color: white;
 }
 
+button{
+  box-shadow: none;
+  padding: 8px 25px;
+  border: none;
+  border-radius: 20px;
+  background-image: linear-gradient(to right, #54ffac, #54a7ff);
+  color: black!important;
+}
+
 #header {
   text-align: center;
+  padding: 3rem 0 0 0;
+  font-size: 24px!important;
+}
+
+#header h2{
+  color: white;
+}
+
+.subitems{
+  padding: 1rem;
 }
 
 #bingoNumber {
@@ -29,7 +48,7 @@ font-family: 'Roboto Slab', serif;
 }
 
 .bingoHeader {
-  background: #e46060;
+  background: #76C9BF;
 }
 
 /* Style spacing of items inside of bingo board */
