@@ -62,8 +62,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
+                    
                     <h1>Multiplayer Bingo</h1>
-            
+                    
                     <h4 class="py-4">Online BINGO for two</h4>
                     
                     <div class="container">
@@ -91,15 +92,38 @@
         </div>
 
         <!-- GAME -->
-        <!-- <div class="container">
+        <div class="container">
             <div class="row">
-                <div class="col-12 text-center"> -->
+                <div class="col-12 text-center">
                     <div id="game">
-                        <h1>Game Start!</h1>
-                        <div id="your-name" style="text-align: center;"></div>
-                
-                        <div id="user-list">
-                            <ul>Current users:</ul>
+                        <div id="header">
+                            <h2>Game Start!</h2>
+                        </div>
+                        <!-- Name, Curr Users, Timer -->
+                        <div class="name-list col-md-12">
+                            <div id="your-name"></div>
+                            <div class="subitems container">
+                                <div class="row">
+                                    <!-- Current Users -->
+                                    <div class="col-md-6">
+                                        <div id="user-list">
+                                            <ul>Current users:</ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Timer -->
+                                    <div class="col-md-6">
+                                        <div class="timer-style">
+                                            <h4> Timer:</h4>
+                                            <div class="btn btn-primary" id="countdown">5</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="game-controls">
+                                <button id="start-game">Begin the game!</button>
+                                <h3 id="bingoNumber"></h3>
+                            </div>
                         </div>
                 
                         <div id="content">
@@ -148,18 +172,11 @@
                                 </tr>
                             </table>
                         </div>
-                
-                        <div id="game-controls" style="display: flex; justify-content: center;">
-                            <button id="start-game">Begin the game!</button>
-                            <h3 id="bingoNumber"></h3>
-                        </div>
-                        <!-- *** ToDo: Fix Font Alignment *** -->
-                        <div id="countdown">5</div>
                     
                     <div>
-                <!-- </div>
+                </div>
             </div>
-        </div> -->
+        </div>
       
     </section>
     <!-- <div class="player p1">
