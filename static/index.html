@@ -58,7 +58,111 @@
    
     
     <!-- *** testing connection -->
-    <div class="player p1">
+    <section class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>Multiplayer Bingo</h1>
+            
+                    <h4 class="py-4">Online BINGO for two</h4>
+                    
+                    <div class="container">
+                        <div class="player p1">
+                            Player 1
+                            <div class="connected">Connected <span> </span></div>
+                        </div>
+                        <div class="player p2">
+                            Player 2
+                            <div class="connected">Connected <span> </span></div>
+                        </div>
+                    
+                        <h1 id="winner" style="font-size: 64px; text-align: center;"></h1>
+                        
+                        <div class="container">
+                            <form class="row mx-auto mb-5 pb-5 user-creation-form">
+                                <input class="form-control col-md-5" id="player-name-input" placeholder="Enter Name"></input>
+                                <input class="form-control col-md-5" id="player-email" type="email" placeholder="Enter Email"></input>
+                                <button class="btn btn-primary col-md-2" id="create-player">Enter Game</button>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GAME -->
+        <!-- <div class="container">
+            <div class="row">
+                <div class="col-12 text-center"> -->
+                    <div id="game">
+                        <h1>Game Start!</h1>
+                        <div id="your-name" style="text-align: center;"></div>
+                
+                        <div id="user-list">
+                            <ul>Current users:</ul>
+                        </div>
+                
+                        <div id="content">
+                            <table id="bingoTable">
+                                <tr>
+                                    <th class="bingoHeader">B</th>
+                                    <th class="bingoHeader">I</th>
+                                    <th class="bingoHeader">N</th>
+                                    <th class="bingoHeader">G</th>
+                                    <th class="bingoHeader">O</th>
+                                </tr>
+                                <tr>
+                                    <td id="box0" class="x1-y5"> &nbsp;</td>
+                                    <td id="box1" class="x2-y5"> &nbsp;</td>
+                                    <td id="box2" class="x3-y5"> &nbsp;</td>
+                                    <td id="box3" class="x4-y5"> &nbsp;</td>
+                                    <td id="box4" class="x5-y5"> &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td id="box5" class="x1-y4"> &nbsp;</td>
+                                    <td id="box6" class="x2-y4"> &nbsp;</td>
+                                    <td id="box7" class="x3-y4"> &nbsp;</td>
+                                    <td id="box8" class="x4-y4"> &nbsp;</td>
+                                    <td id="box9" class="x5-y4"> &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td id="box10" class="x1-y3"> &nbsp;</td>
+                                    <td id="box11" class="x2-y3"> &nbsp;</td>
+                                    <td id="boxFree" class="x3-y3">FREE</td>
+                                    <td id="box12" class="x4-y3"> &nbsp;</td>
+                                    <td id="box13" class="x5-y3"> &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td id="box14" class="x1-y2"> &nbsp;</td>
+                                    <td id="box15" class="x2-y2"> &nbsp;</td>
+                                    <td id="box16" class="x3-y2"> &nbsp;</td>
+                                    <td id="box17" class="x4-y2"> &nbsp;</td>
+                                    <td id="box18" class="x5-y2"> &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td id="box19" class="x1-y1"> &nbsp;</td>
+                                    <td id="box20" class="x2-y1"> &nbsp;</td>
+                                    <td id="box21" class="x3-y1"> &nbsp;</td>
+                                    <td id="box22" class="x4-y1"> &nbsp;</td>
+                                    <td id="box23" class="x5-y1"> &nbsp;</td>
+                                </tr>
+                            </table>
+                        </div>
+                
+                        <div id="game-controls" style="display: flex; justify-content: center;">
+                            <button id="start-game">Begin the game!</button>
+                            <h3 id="bingoNumber"></h3>
+                        </div>
+                        <!-- *** ToDo: Fix Font Alignment *** -->
+                        <div id="countdown">5</div>
+                    
+                    <div>
+                <!-- </div>
+            </div>
+        </div> -->
+      
+    </section>
+    <!-- <div class="player p1">
         Player 1
         <div class="connected">Connected <span> </span></div>
     </div>
@@ -73,74 +177,9 @@
         <input id="player-name-input" placeholder="name"></input>
         <input id="player-email" type="email" placeholder="Enter Email"></input>
         <button id="create-player">Enter Game</button>
-    </form>
+    </form> -->
 
-    <div id="game">
-        <div id="header">
-            <h1>Multiplayer Bingo</h1>
-        </div>
-
-        <div id="your-name" style="text-align: center;"></div>
-
-        <div id="user-list">
-            <ul>Current users:</ul>
-        </div>
-
-        <div id="content">
-            <table id="bingoTable">
-                <tr>
-                    <th class="bingoHeader">B</th>
-                    <th class="bingoHeader">I</th>
-                    <th class="bingoHeader">N</th>
-                    <th class="bingoHeader">G</th>
-                    <th class="bingoHeader">O</th>
-                </tr>
-                <tr>
-                    <td id="box0" class="x1-y5"> &nbsp;</td>
-                    <td id="box1" class="x2-y5"> &nbsp;</td>
-                    <td id="box2" class="x3-y5"> &nbsp;</td>
-                    <td id="box3" class="x4-y5"> &nbsp;</td>
-                    <td id="box4" class="x5-y5"> &nbsp;</td>
-                </tr>
-                <tr>
-                    <td id="box5" class="x1-y4"> &nbsp;</td>
-                    <td id="box6" class="x2-y4"> &nbsp;</td>
-                    <td id="box7" class="x3-y4"> &nbsp;</td>
-                    <td id="box8" class="x4-y4"> &nbsp;</td>
-                    <td id="box9" class="x5-y4"> &nbsp;</td>
-                </tr>
-                <tr>
-                    <td id="box10" class="x1-y3"> &nbsp;</td>
-                    <td id="box11" class="x2-y3"> &nbsp;</td>
-                    <td id="boxFree" class="x3-y3">FREE</td>
-                    <td id="box12" class="x4-y3"> &nbsp;</td>
-                    <td id="box13" class="x5-y3"> &nbsp;</td>
-                </tr>
-                <tr>
-                    <td id="box14" class="x1-y2"> &nbsp;</td>
-                    <td id="box15" class="x2-y2"> &nbsp;</td>
-                    <td id="box16" class="x3-y2"> &nbsp;</td>
-                    <td id="box17" class="x4-y2"> &nbsp;</td>
-                    <td id="box18" class="x5-y2"> &nbsp;</td>
-                </tr>
-                <tr>
-                    <td id="box19" class="x1-y1"> &nbsp;</td>
-                    <td id="box20" class="x2-y1"> &nbsp;</td>
-                    <td id="box21" class="x3-y1"> &nbsp;</td>
-                    <td id="box22" class="x4-y1"> &nbsp;</td>
-                    <td id="box23" class="x5-y1"> &nbsp;</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="game-controls" style="display: flex; justify-content: center;">
-            <button id="start-game">Begin the game!</button>
-            <h3 id="bingoNumber"></h3>
-        </div>
-        <!-- *** ToDo: Fix Font Alignment *** -->
-        <div id="countdown">5</div>
     
-    <div>
 
 <!-- SCRIPT FOR FONT AWESOME -->
 <script src="https://kit.fontawesome.com/2cf12949d8.js" crossorigin="anonymous"></script>
