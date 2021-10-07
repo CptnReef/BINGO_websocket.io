@@ -137,7 +137,7 @@ io.on('connection', socket => {
     socket.on('begin game', () => {
         // Ensure counter is reset before starting game. Sometimes, it doesn't get
         // reset properly if a game is exited before there is a winner.
-        bingoNumberCounter = 1000;
+        bingoNumberCounter = 0;
         unavailableNumbers = [];
 
         bingoNumber();
