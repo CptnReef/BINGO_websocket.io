@@ -143,15 +143,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // get dynamically added and removed
     $(document).on('click', '#start-game', () => {
         socket.emit('begin game');
-        // *** call timer
-        setInterval(countdownUpdate, 1000)
-        
-        //TESTING
-        // socket.emit('player won', { player: playerName, id: socket.id })
     });
 
     $(document).on('click', '#generate-new-board', () => {
         socket.emit('generate new board');
+    });
+
+    socket.on('begin timer', () => {
+        // *** call timer
+        setInterval(countdownUpdate, 1000)
     });
 
     // *** Player Identifier
