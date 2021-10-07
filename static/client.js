@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(countdownUpdate, 1000)
         
         //TESTING
-        socket.emit('player won', { player: playerName, id: socket.id })
+        // socket.emit('player won', { player: playerName, id: socket.id })
     });
 
     $(document).on('click', '#generate-new-board', () => {
